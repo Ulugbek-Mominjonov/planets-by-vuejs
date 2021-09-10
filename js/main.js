@@ -51,12 +51,13 @@ Vue.component("planet",{
               <img  :src="planet.features[selectedFeature].img" alt="planet img">
             </div>
             <div class="planet-desc">
-              <h2 class="planet-desc__title">{{ planet.name }}</h2>
-              <p class="planet-desc__info">{{ planet.features[selectedFeature].text }}</p>
-
-              <p class="planet-desc__source">Source: 
-                <a class="planet-desc__source__link" :href="planet.wikipediaLink">Wikipedia</a>
-              </p>
+              <div class=planet-desc__data>
+                <h2 class="planet-desc__title">{{ planet.name }}</h2>
+                <p class="planet-desc__info">{{ planet.features[selectedFeature].text }}</p>
+                <p class="planet-desc__source">Source: 
+                  <a class="planet-desc__source__link" :href="planet.wikipediaLink">Wikipedia</a>
+                </p>
+              </div>
               
               <div class="planet-desc__feature planet-feature">
                 <button 
