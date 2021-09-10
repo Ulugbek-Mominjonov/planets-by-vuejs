@@ -10,26 +10,65 @@ Vue.component("site", {
               </a>
             </div>
 
+            <button class="togler-button"></button>
             <ul class="site-nav__list">
-              <li v-for="name in planetsName" class="site-nav__item">
-                <a @click="changePlanet(name)" href="#" class="site-nav__link">{{ name }}</a>
+              <li v-for="item in planetsList" class="site-nav__item">
+                <a @click="changePlanet(item)" :style="[selectedPlanet === item.name ? { color: selectedColor }: {color: '#fff'}]" href="#" class="site-nav__link">
+                <span class="site-nav_mobile-dot" :style="{backgroundColor: item.backgroundColor}"></span>{{ item.name }}
+                </a>
               </li>
             </ul>
           </div>
         </div>
       </header>
-      <planet :selectedPlanet="selectedPlanet"></planet>
+      <planet :selectedPlanet="selectedPlanet" :selectedColor="selectedColor"></planet>
     </div>
   `,
   data() {
     return {
-      planetsName: ["Mercuriy","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"],
-      selectedPlanet: "Mercuriy"
+      planetsList: [
+        {
+          name: "Mercuriy",
+          backgroundColor: "#419Ebb"
+        },
+        {
+          name: "Venus",
+          backgroundColor: "#EDA249"
+        },
+        { 
+          name: "Earth",
+          backgroundColor: "#6D2ED5"
+        },
+        {
+          name: "Mars",
+          backgroundColor: "#D14C32"
+        },
+        { 
+          name: "Jupiter",
+          backgroundColor: "#D83A34"
+        },
+        {
+          name: "Saturn",
+          backgroundColor: "#CD5120"
+        },
+        {
+          name: "Uranus",
+          backgroundColor: "#1EC1A2"
+        },
+        {
+          name: "Neptune",
+          backgroundColor: "#2D68F0"
+        }
+      ],
+      selectedPlanet: "Mercuriy",
+      selectedColor: "#419Ebb",
+      showNavList: true
     }
   },
   methods: {
-    changePlanet(planetName) {
-      this.selectedPlanet = planetName
+    changePlanet(planet) {
+      this.selectedPlanet = planet.name;
+      this.selectedColor = planet.backgroundColor
     }
   }
 })
@@ -38,7 +77,12 @@ Vue.component("planet",{
     selectedPlanet: {
       type: String,
       required: true
+    },
+    selectedColor: {
+      type: String,
+      required: true
     }
+
   },
   template: `
     <main>
@@ -63,7 +107,7 @@ Vue.component("planet",{
                 <button 
                   v-for="(feature, index) in featureList"
                   @click="selectedFeature=index"
-                  :style="[selectedFeature == index ? {backgroundColor: planet.backgroundColor}: {backgroundColor: 'transparent'}]"
+                  :style="[selectedFeature == index ? {backgroundColor: selectedColor}: {backgroundColor: 'transparent'}]"
                   class="planet-feature__button"
                   :data-hover="feature">
                   <span class="planet-feature__index">0{{ index + 1 }}</span>
@@ -89,7 +133,6 @@ Vue.component("planet",{
         {
           name: "Mercuriy",
           wikipediaLink: "https://wikipedia.com",
-          backgroundColor: "#419Ebb",
           features: [
             {
               name: "overview",
@@ -129,7 +172,6 @@ Vue.component("planet",{
         {
           name: "Venus",
           wikipediaLink: "https://wikipedia.com",
-          backgroundColor: "#EDA249",
           features: [
             {
               name: "overview",
@@ -169,7 +211,6 @@ Vue.component("planet",{
         {
           name:"Earth",
           wikipediaLink:"https://wikipedia.com",
-          backgroundColor: "#6D2ED5",
           features: [
             {
               name: "overview",
@@ -209,7 +250,6 @@ Vue.component("planet",{
         {
           name:"Mars",
           wikipediaLink:"https://wikipedia.com",
-          backgroundColor: "#D14C32",
           features: [
             {
               name: "overview",
@@ -249,7 +289,6 @@ Vue.component("planet",{
         {
           name:"Jupiter",
           wikipediaLink:"https://wikipedia.com",
-          backgroundColor: "#D83A34",
           features: [
             {
               name: "overview",
@@ -289,7 +328,6 @@ Vue.component("planet",{
         {
           name:"Saturn",
           wikipediaLink:"https://wikipedia.com",
-          backgroundColor: "#CD5120",
           features: [
             {
               name: "overview",
@@ -329,7 +367,6 @@ Vue.component("planet",{
         {
           name:"Uranus",
           wikipediaLink:"https://wikipedia.com",
-          backgroundColor: "#1EC1A2",
           features: [
             {
               name: "overview",
@@ -369,7 +406,6 @@ Vue.component("planet",{
         {
           name:"Neptune",
           wikipediaLink:"https://wikipedia.com",
-          backgroundColor: "#2D68F0",
           features: [
             {
               name: "overview",
