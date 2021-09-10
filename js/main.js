@@ -6,7 +6,7 @@ Vue.component("site", {
           <div class="container site-nav-container">
             <div class="site-logo">
               <a href="#">
-                <img src="/img/logo.svg" alt="" width="109" height="36">
+                <img src="/img/logo.svg" alt="site logo" width="109" height="36">
               </a>
             </div>
 
@@ -63,7 +63,8 @@ Vue.component("planet",{
                   v-for="(feature, index) in featureList"
                   @click="selectedFeature=index"
                   :style="[selectedFeature == index ? {backgroundColor: planet.backgroundColor}: {backgroundColor: 'transparent'}]"
-                  class="planet-feature__button">
+                  class="planet-feature__button"
+                  :data-hover="feature">
                   <span class="planet-feature__index">0{{ index + 1 }}</span>
                   {{ feature }}
                 </button>

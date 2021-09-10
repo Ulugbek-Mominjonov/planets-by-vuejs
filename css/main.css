@@ -205,7 +205,7 @@ img{
   flex-direction: column;
 }
 .planet-feature__button {
-  display: block;
+  position: relative;
   margin-bottom: 16px;
   padding: 12px 25px;
   font-weight: bold;
@@ -218,6 +218,20 @@ img{
   border: 1px solid rgba(255, 255, 255, 0.2);
   background-color: transparent;
   cursor: pointer;
+}
+.planet-feature__button::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+  background-color: #D14C32;
+  z-index: -1;
+  transition: all 0.3s;
+}
+.planet-feature__button:hover::before{
+  height: 100%;
 }
 .planet-feature__index {
   opacity: 0.5;
