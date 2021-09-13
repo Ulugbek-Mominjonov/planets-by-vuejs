@@ -512,9 +512,14 @@ img{
     margin-bottom: 0;
     border: none;
     padding: 20px 0 16px 0;
+    border-bottom: 4px solid transparent;
+    text-align: center;
   }
   .planet-feature__button:not(:first-child) {
     margin-left: 8px;
+  }
+  .planet-feature__button::before {
+    display: none;
   }
   .planet-feature__index{
     display: none;

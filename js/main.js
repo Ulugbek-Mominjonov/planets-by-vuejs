@@ -109,8 +109,8 @@ Vue.component("planet",{
               <div class="planet-desc__feature planet-feature">
                 <button 
                   v-for="(feature, index) in featureList"
-                  @click="selectedFeature=index"
-                  :style="[selectedFeature == index ? {backgroundColor: selectedColor}: {backgroundColor: 'transparent'}]"
+                  @click="clickedFeature(index,selectedColor)"
+                  :style="[selectedFeature == index ? styleObject: {backgroundColor: 'transparent'}]"
                   class="planet-feature__button"
                   :data-hover="feature">
                   <span class="planet-feature__index">0{{ index + 1 }}</span>
@@ -448,6 +448,19 @@ Vue.component("planet",{
       ],
       featureList: ["overview", "internal structure", "surface geology"],
       selectedFeature: 0,
+      styleObject: {
+        'background-color': this.selectedColor,
+        'border-color': this.selectedColor
+      }
+    }
+  },
+  methods: {
+    clickedFeature(index) {
+      this.selectedFeature = index;
+      if(window.innerWidth <= 705) {
+        this.styleObject['background-color'] = null;
+        this.styleObject['border-color'] = this.selectedColor
+      }
     }
   }
 })
