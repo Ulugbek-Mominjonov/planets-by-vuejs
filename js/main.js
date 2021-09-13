@@ -1,6 +1,6 @@
 Vue.component("site", {
   template: `
-    <div>
+    <div class="content-wrapper">
       <header class="site-header">
         <div class="site-nav">
           <div class="container site-nav-container">
@@ -10,10 +10,10 @@ Vue.component("site", {
               </a>
             </div>
 
-            <button class="togler-button"></button>
-            <ul class="site-nav__list">
+            <button @click="togglerNav" class="togler-button"></button>
+            <ul class="site-nav__list" :class="{'site-nav__list--mobile': showNavList}">
               <li v-for="item in planetsList" class="site-nav__item">
-                <a @click="changePlanet(item)" :style="[selectedPlanet === item.name ? { color: selectedColor }: {color: '#fff'}]" href="#" class="site-nav__link">
+                <a @click="[changePlanet(item), togglerNav()]" :style="[selectedPlanet === item.name ? { color: selectedColor }: {color: '#fff'}]" href="#" class="site-nav__link">
                 <span class="site-nav_mobile-dot" :style="{backgroundColor: item.backgroundColor}"></span>{{ item.name }}
                 </a>
               </li>
@@ -62,13 +62,16 @@ Vue.component("site", {
       ],
       selectedPlanet: "Mercuriy",
       selectedColor: "#419Ebb",
-      showNavList: true
+      showNavList: false
     }
   },
   methods: {
     changePlanet(planet) {
       this.selectedPlanet = planet.name;
       this.selectedColor = planet.backgroundColor
+    },
+    togglerNav() {
+      this.showNavList = !this.showNavList
     }
   }
 })
